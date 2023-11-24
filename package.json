@@ -1,0 +1,38 @@
+{
+  "name": "filesharing-app-example",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "pear dev",
+    "test": "brittle test/*.test.js"
+  },
+  "pear": {
+    "gui": {
+      "backgroundColor": "#151517",
+      "height": 540,
+      "width": 720
+    }
+  },
+  "author": " ",
+  "license": "MIT",
+  "devDependencies": {
+    "brittle": "^3.0.0",
+    "joyrider": "^1.0.0"
+  },
+  "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.14.18",
+    "corestore": "^6.15.11",
+    "downloads-folder": "^3.0.3",
+    "htm": "^3.1.1",
+    "hyperbee": "^2.17.0",
+    "hyperdrive": "^11.6.2",
+    "hyperswarm": "^4.7.9",
+    "localdrive": "^1.11.1",
+    "protomux-rpc": "^1.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.1"
+  }
+}
