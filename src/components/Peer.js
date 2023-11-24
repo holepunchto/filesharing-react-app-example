@@ -6,6 +6,7 @@ import {
   AccordionSummary,
   Typography
 } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import FilesList from './FilesList'
 
 export default ({ hyperdrive }) => {
