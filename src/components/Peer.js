@@ -16,7 +16,7 @@ export default ({ hyperdrive }) => {
     <${Accordion}>
       <${AccordionSummary} aria-controls="peer-content" expandIcon=${html`<${ExpandMoreIcon} />`}>
         <${Typography}>
-          ${profile.name}
+          ${profile?.name}
         </>
       </>
       <${AccordionDetails}>
