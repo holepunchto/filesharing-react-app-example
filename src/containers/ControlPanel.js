@@ -29,8 +29,16 @@ export default () => {
   return html`
     <${AppBar} position="static">
       <${Toolbar}>
-        <${Box} sx=${{ flexGrow: 1}}>
-          <${Button} component="label">
+        <${Box}
+          sx=${{
+            flexGrow: 1,
+            '-webkit-app-region': 'drag'
+          }}
+        >
+          <${Button}
+            component="label"
+            sx=${{ '-webkit-app-region': 'no-drag' }}
+          >
             Add files
             <${VisuallyHiddenInput}
               type="file"
@@ -56,6 +64,7 @@ export default () => {
         </>
         <${Button}
           onClick=${() => setShowChangeName(true)}
+          sx=${{ '-webkit-app-region': 'no-drag' }}
         >
           ${user.profile.name}
           <${AccountCircleIcon} sx=${{ marginLeft: '10px' }}/>
