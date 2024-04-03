@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "pear dev",
-    "test": "brittle test/*.test.js"
+    "test": "standard"
   },
   "pear": {
     "type": "desktop",
@@ -18,7 +18,8 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "brittle": "^3.0.0",
-    "joyrider": "^1.0.0"
+    "joyrider": "^1.0.0",
+    "standard": "^17.1.0"
   },
   "dependencies": {
     "@emotion/styled": "^11.11.0",

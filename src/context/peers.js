@@ -10,7 +10,7 @@ import hic from 'hypercore-id-encoding'
 
 const PeersContext = createContext()
 
-function PeersProvider({ name, topic, ...props }) {
+function PeersProvider ({ name, topic, ...props }) {
   const [loaded, setLoaded] = useState(false)
   const user = useUser()
   const [peers, setPeers] = useState([])
@@ -27,13 +27,13 @@ function PeersProvider({ name, topic, ...props }) {
       .then(initSwarm)
       .then(() => setLoaded(true))
 
-    async function loadPeers() {
+    async function loadPeers () {
       for await (const { key, value: { driveKey } } of hyperbee.createReadStream()) {
         add({ key, driveKey })
       }
     }
 
-    async function initSwarm() {
+    async function initSwarm () {
       hyperswarm.current = new Hyperswarm({
         keyPair: await user.corestore.createKeyPair('first-app')
       })
@@ -90,7 +90,7 @@ function PeersProvider({ name, topic, ...props }) {
     }
   }, [])
 
-  async function add({ key, driveKey }) {
+  async function add ({ key, driveKey }) {
     console.log(`[PeersProvider] add() key=${key} driveKey=${driveKey}`)
     const hyperdrive = new Hyperdrive(user.corestore, driveKey)
     await hyperdrive.ready()

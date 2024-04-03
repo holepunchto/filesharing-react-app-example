@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 
 export default ({ title, message, label, initialResponse = '', onResponse, onCancel }) => {
-  const [text, setText] = useState(initialResponse )
+  const [text, setText] = useState(initialResponse)
 
   return html`
     <${Dialog}

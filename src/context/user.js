@@ -8,7 +8,7 @@ import downloadsFolder from 'downloads-folder'
 
 const UserContext = createContext()
 
-function UserProvider({ config, ...props }) {
+function UserProvider ({ config, ...props }) {
   const [loaded, setLoaded] = useState(false)
   const [profile, setProfile] = useState({})
   const [files, setFiles] = useState([])
@@ -29,23 +29,23 @@ function UserProvider({ config, ...props }) {
       .then(() => setLoaded(true))
   }, [hyperdriveRef])
 
-  async function initProfile() {
+  async function initProfile () {
     const exists = await hyperdriveRef.current.exists('/meta/profile.json')
     if (exists) return
     await updateProfile({ name: 'No name' })
   }
 
-  async function updateProfile(profile) {
+  async function updateProfile (profile) {
     await hyperdriveRef.current.put('/meta/profile.json', Buffer.from(JSON.stringify(profile)))
   }
 
-  async function getProfile() {
+  async function getProfile () {
     console.log('[UserProvider] getProfile()')
     const buf = await hyperdriveRef.current.get('/meta/profile.json')
     setProfile(JSON.parse(buf))
   }
 
-  async function getFiles() {
+  async function getFiles () {
     console.log('[UserProvider] getFiles()')
     const newFiles = []
     const stream = hyperdriveRef.current.list('/files', { recursive: false })
@@ -59,8 +59,8 @@ function UserProvider({ config, ...props }) {
     const profileWatcher = hyperdriveRef.current.watch('/meta', { recursive: false })
 
     watchForever()
-    async function watchForever() {
-      for await (const _ of profileWatcher) {
+    async function watchForever () {
+      for await (const _ of profileWatcher) { // eslint-disable-line no-unused-vars
         await getProfile()
       }
     }
@@ -74,8 +74,8 @@ function UserProvider({ config, ...props }) {
     const filesWatcher = hyperdriveRef.current.watch('/files')
 
     watchForever()
-    async function watchForever() {
-      for await (const _ of filesWatcher) {
+    async function watchForever () {
+      for await (const _ of filesWatcher) { // eslint-disable-line no-unused-vars
         await getFiles()
       }
     }

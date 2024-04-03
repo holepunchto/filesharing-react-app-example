@@ -9,13 +9,13 @@ export default ({ hyperdrive }) => {
     getFiles()
   }, [])
 
-  async function getProfile() {
+  async function getProfile () {
     console.log('[use-peer] getProfile()')
     const buf = await hyperdrive.get('/meta/profile.json')
     setProfile(JSON.parse(buf))
   }
 
-  async function getFiles() {
+  async function getFiles () {
     console.log('[use-peer] getFiles()')
     const newFiles = []
     const stream = hyperdrive.list('/files', { recursive: false })
@@ -29,8 +29,8 @@ export default ({ hyperdrive }) => {
     const profileWatcher = hyperdrive.watch('/meta', { recursive: false })
 
     watchForever()
-    async function watchForever() {
-      for await (const _ of profileWatcher) {
+    async function watchForever () {
+      for await (const _ of profileWatcher) { // eslint-disable-line no-unused-vars
         await getProfile()
       }
     }
@@ -44,8 +44,8 @@ export default ({ hyperdrive }) => {
     const filesWatcher = hyperdrive.watch('/files')
 
     watchForever()
-    async function watchForever() {
-      for await (const _ of filesWatcher) {
+    async function watchForever () {
+      for await (const _ of filesWatcher) { // eslint-disable-line no-unused-vars
         await getFiles()
       }
     }

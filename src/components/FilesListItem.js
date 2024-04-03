@@ -13,7 +13,7 @@ import useUser from '../hooks/use-user'
 import Confirm from '../components/Confirm'
 import Alert from '../components/Alert'
 
-export default ({ file, hyperdrive, allowDeletion = false, }) => {
+export default ({ file, hyperdrive, allowDeletion = false }) => {
   const user = useUser()
   const [showDeletePrompt, setShowDeletePrompt] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -21,7 +21,7 @@ export default ({ file, hyperdrive, allowDeletion = false, }) => {
   const [showSpinner, setShowSpinner] = useState(false)
   const filename = file.key.split('/').pop()
 
-  async function download() {
+  async function download () {
     const ws = user.localdrive.createWriteStream(filename)
     const rs = hyperdrive.createReadStream(file.key, {
       timeout: 10000 // is this timeout untit it starts, or until it ends?

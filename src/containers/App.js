@@ -15,7 +15,7 @@ import {
 export default ({ app }) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const { loaded: arePeersLoaded } = usePeers()
-  const { corestore, hyperdrive, loaded: isUserLoaded} = useUser()
+  const { loaded: isUserLoaded } = useUser()
 
   useEffect(() => {
     const isAllLoaded = arePeersLoaded && isUserLoaded
