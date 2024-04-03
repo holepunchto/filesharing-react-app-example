@@ -6,6 +6,7 @@ import Hyperdrive from 'hyperdrive'
 import Hyperswarm from 'hyperswarm'
 import useUser from '../hooks/use-user'
 import ProtomuxRPC from 'protomux-rpc'
+import hic from 'hypercore-id-encoding'
 
 const PeersContext = createContext()
 
@@ -84,7 +85,7 @@ function PeersProvider({ name, topic, ...props }) {
       // If this is an example app, then this key preferably should not be in sourcecode
       // But the app.key may not exist before `pear stage/release` has been called, so
       // maybe there is another 32-byte key we can use?
-      const discovery = hyperswarm.current.join(Buffer.from(topic), { server: true, client: true })
+      const discovery = hyperswarm.current.join(hic.decode(topic), { server: true, client: true })
       await discovery.flushed()
     }
   }, [])
