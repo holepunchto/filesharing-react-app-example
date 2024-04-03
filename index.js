@@ -20,7 +20,7 @@ root.render(html`
     <${UserProvider} config=${config}>
       <${PeersProvider}
         name="filesharing-app-example"
-        topic=${app.key || 'W3z8fsASq1O1Zm8oPEvwBYbN2Djsw97R'}
+        topic=${app.key || '57337a386673415371314f315a6d386f504576774259624e32446a7377393752'}
       >
         <${App}
           app={app}
