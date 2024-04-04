@@ -18,10 +18,14 @@ export default ({ file, hyperdrive, allowDeletion = false }) => {
   const [showDeletePrompt, setShowDeletePrompt] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [showErrorMessage, setShowErrorMessage] = useState(false)
+  const [downloadMessage, setDownloadMessage] = useState('')
+  const [showDownloadMessage, setShowDownloadMessage] = useState(false)
   const [showSpinner, setShowSpinner] = useState(false)
   const filename = file.key.split('/').pop()
 
   async function download () {
+    console.log(`[FileListItem] Downloading ${filename} to ${user.downloadsFolder}`)
+
     const ws = user.localdrive.createWriteStream(filename)
     const rs = hyperdrive.createReadStream(file.key, {
       timeout: 10000 // is this timeout untit it starts, or until it ends?
@@ -30,7 +34,11 @@ export default ({ file, hyperdrive, allowDeletion = false }) => {
     setShowSpinner(true)
 
     rs.pipe(ws)
-    rs.on('end', () => setShowSpinner(false))
+    rs.on('end', () => {
+      setShowSpinner(false)
+      setDownloadMessage(`${filename} was downloaded to ${user.downloadsFolder}`)
+      setShowDownloadMessage(true)
+    })
     rs.on('error', err => {
       const hasTimedOut = err.message.includes('REQUEST_TIMEOUT')
       setErrorMessage(hasTimedOut
@@ -63,29 +71,33 @@ export default ({ file, hyperdrive, allowDeletion = false }) => {
           <${DeleteIcon} fontSize="small" />
         </>
       `}
-      ${showDeletePrompt && html`
-        <${Confirm}
-          title="Confirm"
-          message=${`Are you sure you want to stop sharing ${filename}?`}
-          onCancel=${() => setShowDeletePrompt(false)}
-          onConfirm=${async () => {
-            setShowDeletePrompt(false)
-            setShowSpinner(true)
-            await hyperdrive.del(file.key)
-            setShowSpinner(false)
-          }}
-        />
-      `}
-      ${showErrorMessage && html`
-        <${Alert}
-          title="Error"
-          message=${errorMessage}
-          onClose=${e => {
-            setShowErrorMessage(false)
-            e.stopPropagation()
-          }}
-        />
-      `}
     </>
+    ${showDeletePrompt && html`
+      <${Confirm}
+        title="Confirm"
+        message=${`Are you sure you want to stop sharing ${filename}?`}
+        onCancel=${() => setShowDeletePrompt(false)}
+        onConfirm=${async () => {
+          setShowDeletePrompt(false)
+          setShowSpinner(true)
+          await hyperdrive.del(file.key)
+          setShowSpinner(false)
+        }}
+      />
+    `}
+    ${showErrorMessage && html`
+      <${Alert}
+        title="Error"
+        message=${errorMessage}
+        onClose=${() => setShowErrorMessage(false)}
+      />
+    `}
+    ${showDownloadMessage && html`
+      <${Alert}
+        title="Downloaded"
+        message=${downloadMessage}
+        onClose=${() => setShowDownloadMessage(false)}
+      />
+    `}
   `
 }

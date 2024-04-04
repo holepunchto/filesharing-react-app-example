@@ -94,7 +94,8 @@ function UserProvider ({ config, ...props }) {
         files,
         corestore: corestoreRef.current,
         hyperdrive: hyperdriveRef.current,
-        localdrive: localdriveRef.current
+        localdrive: localdriveRef.current,
+        downloadsFolder: downloadsFolder()
       }}
       ...${props}
     />
