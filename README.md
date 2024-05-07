@@ -11,6 +11,7 @@ To read more details about how to use Pear, read the [Getting Started guide](htt
 ```
 $ git clone https://github.com/holepunchto/filesharing-react-app-example.git
 $ cd filesharing-react-app-example
+$ npm install 
 $ pear run .
 ```
 
