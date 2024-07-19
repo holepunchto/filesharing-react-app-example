@@ -1,4 +1,5 @@
-import { teardown } from 'pear'
+/* global Pear */
+
 import { createContext, useEffect, useRef, useState } from 'react'
 import { html } from 'htm/react'
 import Corestore from 'corestore'
@@ -17,7 +18,7 @@ function UserProvider ({ config, ...props }) {
   const localdriveRef = useRef(new Localdrive(downloadsFolder()))
 
   // Does it make sense to put here??
-  teardown(async () => {
+  Pear.teardown(async () => {
     await corestoreRef.current.close()
   })
 
