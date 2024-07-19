@@ -1,4 +1,5 @@
-import { teardown } from 'pear'
+/* global Pear */
+
 import { createContext, useEffect, useState, useRef } from 'react'
 import { html } from 'htm/react'
 import Hyperbee from 'hyperbee'
@@ -38,7 +39,7 @@ function PeersProvider ({ name, topic, ...props }) {
         keyPair: await user.corestore.createKeyPair('first-app')
       })
 
-      teardown(async () => {
+      Pear.teardown(async () => {
         await hyperswarm.current.destroy()
       })
 
