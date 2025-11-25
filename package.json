@@ -1,13 +1,36 @@
 {
   "name": "filesharing-react-app-example",
-  "main": "index.html",
   "type": "module",
   "scripts": {
     "dev": "pear dev",
     "test": "standard"
   },
   "pear": {
-    "type": "desktop",
+    "pre": "pear-electron/pre",
+    "routes": "..",
+    "stage": {
+      "ignore": [
+        ".git",
+        ".gitattributes",
+        ".gitignore",
+        ".github",
+        ".DS_Store",
+        ".prettierignore",
+        "prebuilds",
+        "coverage",
+        ".vscode",
+        "corestore",
+        "test",
+        "examples",
+        "todo",
+        "scripts",
+        "sidecar.crash.log",
+        "electron-main.crash.log",
+        "cli.crash.log",
+        "package-lock.json",
+        "node_modules/.package-lock.json"
+      ]
+    },
     "gui": {
       "backgroundColor": "#151517",
       "height": 540,
@@ -18,6 +41,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "brittle": "^3.0.0",
+    "joyrider": "^1.0.0",
     "standard": "^17.1.0"
   },
   "dependencies": {
@@ -32,6 +56,8 @@
     "hyperdrive": "^11.8.1",
     "hyperswarm": "^4.7.14",
     "localdrive": "^1.11.1",
+    "pear-bridge": "^1.2.4",
+    "pear-electron": "^1.7.25",
     "protomux-rpc": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
