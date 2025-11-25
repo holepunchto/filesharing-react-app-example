@@ -32,12 +32,12 @@ export default () => {
         <${Box}
           sx=${{
             flexGrow: 1,
-            '-webkit-app-region': 'drag'
+            WebkitAppRegion: 'drag'
           }}
         >
           <${Button}
             component="label"
-            sx=${{ '-webkit-app-region': 'no-drag' }}
+            sx=${{ WebkitAppRegion: 'no-drag' }}
           >
             Add files
             <${VisuallyHiddenInput}
@@ -64,7 +64,7 @@ export default () => {
         </>
         <${Button}
           onClick=${() => setShowChangeName(true)}
-          sx=${{ '-webkit-app-region': 'no-drag' }}
+          sx=${{ WebkitAppRegion: 'no-drag' }}
         >
           ${user.profile.name}
           <${AccountCircleIcon} sx=${{ marginLeft: '10px' }}/>
