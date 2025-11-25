@@ -51,7 +51,7 @@ export default ({ file, hyperdrive, allowDeletion = false }) => {
   }
 
   return html`
-    <${ListItemButton} onClick=${download}>
+    <${ListItemButton} key=${file.key} onClick=${download}>
       <${ListItemIcon} size="small">
         <${InsertDriveFileIcon} size=${10} />
       </>
